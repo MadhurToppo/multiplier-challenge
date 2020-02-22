@@ -15,20 +15,21 @@ $(document).ready(function() {
     var data = { user: { alias: userAlias}, multiplication: {factorA: a, factorB: b}, resultAttempt: attempt};
 
     // Send the data using post
-    $.ajax({
-	    url: '/results',
-	    type: 'POST',
-	    data: JSON.stringify(data),
-	    contentType: "application/json; charset=utf-8",
-	    dataType: "json",
-	    success: function(result){
-        if(result.correct) {
-          $('.result-message').empty().append("The result is correct! Congratulations!");
-        } else {
-          $('.result-message').empty().append("Oops that's not correct! But keep trying!");
-        }
-	    }
-    });
+	   $.ajax({
+       url: '/results',
+       type: 'POST',
+       data: JSON.stringify(data),
+       contentType: "application/json; charset=utf-8",
+       dataType: "json",
+       async: false,
+       success: function(result){
+         if(result.correct) {
+             $('.result-message').empty().append("The result is correct! Congratulations!");
+         } else {
+             $('.result-message').empty().append("Ooops that's not correct! But keep trying!");
+         }
+       }
+     });
     updateMultiplication();
 	});
 });

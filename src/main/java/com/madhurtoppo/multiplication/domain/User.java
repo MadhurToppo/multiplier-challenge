@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.*;
+
 /**
  * Stores information to identify the user
  */
@@ -12,7 +14,13 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode
+@Entity
+@Table(name = "user", catalog = "multiplier_challenge")
 public class User {
+  @Id
+  @GeneratedValue
+  @Column(name = "USER_ID")
+  private Long id;
 
   private final String alias;
 
